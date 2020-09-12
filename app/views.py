@@ -33,6 +33,20 @@ def get_jobs(request):
 		return Response({})
 
 
+@api_view(['GET'])
+def list_jobs(request):
+	jobs = Jobs.objects.all()
+	serializer = JobsSerializer(jobs, many=True)
+	return Response(serializer.data)
+
+
+@api_view(['GET'])
+def detail_jobs(request, pk):
+	job = Jobs.objects.get(id=pk)
+	serializer = JobsSerializer(job, many=False)
+	return Response(serializer.data)
+
+
 @api_view(['POST'])
 def create_jobs(request):
 	serializer = JobsSerializer(data=request.data)
@@ -41,3 +55,12 @@ def create_jobs(request):
 		serializer.save()
 	return Response(serializer.data)
 
+
+@api_view(['POST'])
+def update_jobs(request, pk):
+	job = Jobs.objects.get(id=pk)
+	serializer = JobsSerializer(instance=job, data=request.data)
+
+	if serializer.is_valid():
+		serializer.save()
+	return Response(serializer.data)
