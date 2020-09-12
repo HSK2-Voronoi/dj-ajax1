@@ -9,5 +9,6 @@ urlpatterns = [
 	path('api/list_jobs/<int:pk>/', views.detail_jobs),
 	path('api/list_jobs/create/', views.create_jobs),
 	path('api/list_jobs/<int:pk>/update', views.update_jobs),
+	path('api/list_jobs/<int:pk>/delete', views.delete_jobs),
 ] 
 

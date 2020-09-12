@@ -64,3 +64,11 @@ def update_jobs(request, pk):
 	if serializer.is_valid():
 		serializer.save()
 	return Response(serializer.data)
+
+
+@api_view(['DELETE'])
+def delete_jobs(request, pk):
+	job = Jobs.objects.get(id=pk)
+	job.delete()
+
+	return Response('Itemm is delted successfully!')
