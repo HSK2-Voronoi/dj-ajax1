@@ -15,7 +15,7 @@ def get_jobs(request):
 	location = request.query_params.get('location', None)
 	job_type = request.query_params.get('job_type', None)
 	sort_jobs = request.query_params.get('sort_jobs', None)
-	#
+	# override information
 	jobs = Jobs.objects.all()
 	if location:
 		jobs = jobs.filter(location=location)
